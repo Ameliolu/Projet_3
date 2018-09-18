@@ -86,6 +86,7 @@ def generate_initial():
 """Génerer les objets aléatoirement"""
 
 def generate_item():
+    """Génerer les objets aléatoirement"""
     while True:
         attempt = ARRAY[random.randint(0, 239)]
         if not "BRICK" in attempt and not "PERSO" in attempt and not "GUARD" in attempt:

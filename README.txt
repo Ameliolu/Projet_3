@@ -1,5 +1,5 @@
 
-Mac Gyver : Le Labrynthe (version mise à jour 22/10/2018)
+Mac Gyver : Le Labrynthe (version mise à jour 03/03/2020)
 
 ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,6 +47,7 @@ Le ramassage des objets se fait automatiquement en déplaçant le personnage dessu
 4) Remerciements
 
 
-Ce jeu a été développé grâce au langage python (https://www.python.org) et à la bibliothèque pygame (https://www.pygame.org).
+Ce jeu a été développé grâce au langage python (https://www.python.org), à la bibliothèque pygame (https://www.pygame.org).
+Une fonctionnalité a été ajoutée en s'inspirant d'une fonction du site rosettacode (https://rosettacode.org/wiki/Maze_generation#Python)
 
 Merci à tous ceux ayant participé à l'élaboration de ces outils, à mes tuteurs et à tous les auteurs des ressources consultées.

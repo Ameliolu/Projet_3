@@ -44,7 +44,8 @@ def main():
 
     """Génration des éléments et de l'interface graphique"""
 
-    Labyrinthe.creation(window, ARRAY, BRICK, PERSO, GUARD)
+    #Labyrinthe.creation(window, ARRAY, BRICK, PERSO, GUARD)
+    Labyrinthe.creation(ARRAY)
 
     Equipment("syringe", ARRAY)
     Equipment("tube", ARRAY)

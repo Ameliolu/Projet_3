@@ -110,7 +110,8 @@ class Labyrinthe:
 
         return s
 		
-    def creation(window, ARRAY, BRICK, PERSO, GUARD):
+    #def creation(window, ARRAY, BRICK, PERSO, GUARD):
+    def creation(ARRAY):
         """fonction de préparation des éléments du jeu"""
         lab = Labyrinthe.make_maze()
         content = []

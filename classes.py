@@ -1,8 +1,9 @@
 """Classes part file"""
 
-import pygame
+#import pygame
+from random import shuffle, randrange
 
-from pygame import *
+#from pygame import *
 from constantes import *
 from mac_gyver_labyrinth import *
 
@@ -81,17 +82,52 @@ class Labyrinthe:
     def __init__(self):
         pass
 		
+    def make_maze(w = 7, h = 7):
+        """Fonction de génération aléatoire d'un labyrinthe adaptée du code disponible sur https://rosettacode.org/wiki/Maze_generation#Python"""
+        vis = [[0] * w + [1] for _ in range(h)] + [[1] * (w + 1)]
+        vertical = [["bo"] * w + ['b'] for _ in range(h)] + [[]]
+        horizontal = [["bb"] * w + ['b'] for _ in range(h + 1)]
+        def walk(x, y):
+            vis[y][x] = 1
+            d = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
+            shuffle(d)
+            for (xx, yy) in d:
+                if xx == -1 and yy == 0:
+                    vertical[y][max(x, xx)] = "mo"
+                if xx == 7 and yy == 6:
+                    vertical[y][max(x, xx)] = "g"
+                if vis[yy][xx]:
+                    continue
+                if xx == x:
+                    horizontal[max(y, yy)][x] = "bo"
+                if yy == y:
+                    vertical[y][max(x, xx)] = "oo"
+                walk(xx, yy)
+        walk(randrange(w), randrange(h))
+        #s = ""
+        s = []
+        for (a, b) in zip(horizontal, vertical):
+            #s += ''.join(a + ['\n'] + b + ['\n'])
+            s += ''.join(a + b)
+
+        return s
+		
     def creation(window, ARRAY, BRICK, PERSO, GUARD):
     #méthode de lecture du fichier txt, de création du tableau initial et d'affichage graphique initial
-        with open("level.txt", "r") as generating_file:
+        #with open("level.txt", "r") as generating_file:
+        lab = Labyrinthe.make_maze()
         #fonction performante pour travailer sur des fichiers
-            content = []
-	        #on crée une liste
-            for ligne in generating_file:
-                #on enlève le caractère de saut de ligne
-                ligne_clear = ligne.rstrip("\n")
-                content.append(ligne_clear)
-                #on ajoute dans la liste le contenu
+        content = []
+        #on crée une liste
+        compteur_ligne = 0
+        var_ligne = ""
+        for elt in lab:
+            compteur_ligne += 1
+            var_ligne = var_ligne + elt
+            if compteur_ligne == 15:
+                content.append(var_ligne)
+                compteur_ligne = 0
+                var_ligne = ""
 
         numero_ligne = 0
         for element in content:
@@ -100,13 +136,13 @@ class Labyrinthe:
                 x = numero_case * TAILLE_SPRITE
                 y = numero_ligne * TAILLE_SPRITE
                 if sprite == "b":
-                    window.blit(BRICK, (x, y))
+                    #window.blit(BRICK, (x, y))
                     ARRAY.append([x, y, "BRICK"])
                 elif sprite == "m":
-                    window.blit(PERSO, (x, y))
+                    #window.blit(PERSO, (x, y))
                     ARRAY.append([x, y, "PERSO"])
                 elif sprite == "g":
-                    window.blit(GUARD, (x, y))
+                    #window.blit(GUARD, (x, y))
                     ARRAY.append([x, y, "GUARD"])
                 else:
                     # le cas du caractère o dans le fichier

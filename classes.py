@@ -1,9 +1,7 @@
 """Classes part file"""
 
-#import pygame
-from random import shuffle, randrange
 
-#from pygame import *
+from random import shuffle, randrange
 from constantes import *
 from mac_gyver_labyrinth import *
 
@@ -25,7 +23,7 @@ class Personnage:
         pass
 
     def mouvement(x, y, ARRAY):
-    #méthode qui gère les déplacements
+        """"fonction qui gère les déplacements"""
         position_x = 0
         position_y = 0
         position_initiale = 0
@@ -61,7 +59,7 @@ class Personnage:
         pygame.display.flip()
 
     def inventaire(items, ARRAY):
-    #méthode qui sert à gérer l'inventaire
+        """fonction qui sert à gérer l'inventaire"""
         for elt in ARRAY:
             if "PERSO" in elt and "syringe" in elt:
                 elt.remove("syringe")
@@ -113,12 +111,9 @@ class Labyrinthe:
         return s
 		
     def creation(window, ARRAY, BRICK, PERSO, GUARD):
-    #méthode de lecture du fichier txt, de création du tableau initial et d'affichage graphique initial
-        #with open("level.txt", "r") as generating_file:
+        """fonction de préparation des éléments du jeu"""
         lab = Labyrinthe.make_maze()
-        #fonction performante pour travailer sur des fichiers
         content = []
-        #on crée une liste
         compteur_ligne = 0
         var_ligne = ""
         for elt in lab:
@@ -151,7 +146,7 @@ class Labyrinthe:
             numero_ligne += 1
 
     def affichage(window, ARRAY, BRICK, PERSO, GUARD, SYRINGE_IMAGE, TUBE_IMAGE, ETHER_IMAGE, BACKGROUND):
-    #Génération du niveau graphique à partir de la lecture de ARRAY
+        """"Génération du niveau graphique à partir de la lecture de ARRAY"""
     #Si la fonction trouve un élément dans la case, elle l'affiche aux coordonnées de la case (ses deux premiers éléments)
         window.blit(BACKGROUND, (0, 0))
         for elt in ARRAY:
